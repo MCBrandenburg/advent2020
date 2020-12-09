@@ -26,17 +26,17 @@ func Test_name(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := name(tt.args.preamble, tt.args.input); got != tt.want {
+			if got := findPart1Preabmle(tt.args.preamble, tt.args.input); got != tt.want {
 				t.Errorf("name() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func Test_name2(t *testing.T) {
+func Test_findPart2(t *testing.T) {
 	type args struct {
-		preamble int
-		input    []int
+		input  []int
+		target int
 	}
 	tests := []struct {
 		name string
@@ -45,7 +45,7 @@ func Test_name2(t *testing.T) {
 	}{
 		{
 			args: args{
-				preamble: 25,
+				target: 127,
 				input: []int{
 					35, 20, 15, 25, 47, 40, 62, 55, 65, 95, 102, 117, 150, 182, 127, 219, 299, 277, 309, 576,
 				},
@@ -55,8 +55,8 @@ func Test_name2(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := name2(tt.args.preamble, 127, tt.args.input); got != tt.want {
-				t.Errorf("name2() = %v, want %v", got, tt.want)
+			if got := findPart2(tt.args.input, tt.args.target); got != tt.want {
+				t.Errorf("findPart2() = %v, want %v", got, tt.want)
 			}
 		})
 	}
